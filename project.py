@@ -82,10 +82,8 @@ def plot_multiple_bars(df, columns ,title = 'Distributions'):
     n = len(columns)
     cols = 3
     rows = (n + cols - 1) // cols
-    
-    
+
     fig = make_subplots(rows=rows, cols=cols, subplot_titles=columns)
-    
     row, col = 1, 1
     
     for var in columns:

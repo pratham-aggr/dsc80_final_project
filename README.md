@@ -11,7 +11,7 @@
 ></iframe>
 
 <iframe
-  src="assets/univariate_analysis_cause.region.html"
+  src="assets/univariate_analysis_climate.region.html"
   width="800"
   height="600"
   frameborder="0"

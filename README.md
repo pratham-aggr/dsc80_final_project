@@ -37,7 +37,12 @@ Based on the dataset the column which is most likely to be **NMAR** (Not Missing
 To frame it as **MAR** (Missing at Random) further information on why the values are missing would be needed. This additional information could be wind speed, precipitation, some disaster report or reporting system failure is needed. If these factors can convey some correlation with the missingness in demand.loss (megawatt) then MAR can be justified. 
 
 ## Hypothesis Testing
-
+<iframe
+  src="kde_is_normal_climate_True_False_dur_hours.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 ## Framing a Prediction Problem
 
 ## Baseline Model

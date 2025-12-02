@@ -97,7 +97,6 @@ def plot_multiple_bars(df, columns ,title = 'Distributions'):
             row += 1
             
     fig.update_layout(height=500 * rows, width=1200, title=title)
-    fig.write_html('assets/')
     return fig
     
 def plot_state_choropleth(df, value_col, aggfunc = 'mean'):

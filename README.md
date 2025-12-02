@@ -25,7 +25,7 @@
 ></iframe>
 
 <iframe
-  src="map.html"
+  src="assets/map.html"
   width="800"
   height="600"
   frameborder="0"

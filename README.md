@@ -93,6 +93,37 @@ The aggregation tables paints a good picture of how outage severity varies acros
 Based on the dataset the column which is most likely to be **NMAR** (Not Missing at Random) is
 `demand.loss (megawatt)` During large severe outages, reporting systems are often deprioritized which increases the likelihood that the larger (unobserved) values of outages are missing. This further means that missing may be directly related to the variable itself (the definition of NMAR).
 To frame it as **MAR** (Missing at Random) further information on why the values are missing would be needed. This additional information could be wind speed, precipitation, some disaster report or reporting system failure is needed. If these factors can convey some correlation with the missingness in demand.loss (megawatt) then MAR can be justified. 
+We test the following two hypothesis to for assessment of missingness in our data.
+
+**Missingness Hypothesis 1**: 
+**H0**: missingness in `anomaly.level` is independent of total water percentage (`pct_water_tot (%)`)
+**H1**: missingness in `anomaly.level` is dependent on total water percentage (`pct_water_tot (%)`)
+**TS**: Kolmogorov-Smirnov statistic, since KDE of both categroies is very similar mean/median would'nt suffice. 
+**Result**: Failed to reject H0 (**pval = 0.8247** , alpha = 0.05)
+Missingness appears random with respect to water percentage.
+
+<iframe
+  src="assets/hyp_pct_water_tot (%).html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+**Missingness Hypothesis 2**: 
+**H0**: missingness in `anomaly.level` is independent of commercial electricity sales (`com.sales (megawatt-hour)`)
+**H1**: missingness in `anomaly.level` is dependent on commercial electricity sales (`com.sales (megawatt-hour)`)
+**TS**: Kolmogorov-Smirnov statistic, since KDE of both categroies is very similar mean/median would'nt suffice. 
+**Result**: Reject H0  (**pval = 0.0** , alpha = 0.05)
+Missingness does not appears to be random with respect to utility contribution.
+
+<iframe
+  src="assets/hyp_com.sales (megawatt-hour).html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+
 
 ## Hypothesis Testing
 <iframe

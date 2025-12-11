@@ -140,6 +140,7 @@ We will perform Permutation Testing to investigate the following:
 Hence we have no statistical evidence that climate category influences outage duration (suprising result, but acceptable since power outages depend on weather more than climate). This result must not be taken very seriously, because it is very close to alpha, if we had more information (less nans) we may yeild opposite result. 
 
 ## Framing a Prediction Problem
+The project will predict the **duration (hours)** of a major power outage, framing as a **regression problem** where target variable is `dur_hours`. Duration was chosen because outage duration is the most pressing factor when it comes to operationalizing the "severity" of a power outage as it has direct strong implications for emergency planning, resource allocation etc. To evaluate the model performance, we will be using the **Mean Absolute Error** as the primary metric. MAE is selected because it very easy to interpret and it is robust to outliers relative to metrics like Root Mean Squared Error (RMSE). By focussing on MAE, our model would be used as a better day to day tool to predict the severity of general outages. 
 
 ## Baseline Model
 

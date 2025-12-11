@@ -4,7 +4,6 @@
 Power outages disrupt millions of lives, which raises pressing issues like public safety and emergence response to economic stability. A power outage may seem like a simple inconvenience, like losing the chance to finish a show on Netflix, but its real impact goes far beyond that. In severe situations a power outage can  disable critical medical equipment, shut down heating or cooling during extreme weather, interrupt communication systems used by first responders, halt transportation services, and cause widespread economic losses for businesses and communities. Summary statistics of some variables which intuitively contribute most to the power outage are shown below. Note: dur_hours are calculate by taking in the difference between `outage_restore` and `outage_start`.
 
 <div align="center">
-
 |       |   dur_hours |   customers.affected |   demand.loss.mw (megawatt) |   population   | poppct_urban (%) | res.price (cents/kWh) | pc.realgsp.state (usd) |
 |:------|------------:|---------------------:|-----------------------------:|----------------:|------------------:|------------------------:|-------------------------:|
 | count | 1476        | 1056                 | 804                          | 1476           | 1476             | 1464                   | 1476                    |

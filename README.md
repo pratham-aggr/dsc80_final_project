@@ -98,24 +98,24 @@ To frame it as **MAR** (Missing at Random) further information on why the values
 We test the following two hypothesis to for assessment of missingness in our data.
 
 **Missingness Hypothesis 1**: 
-**H0**: missingness in `anomaly.level` is independent of total water percentage (`pct_water_tot (%)`)
-**H1**: missingness in `anomaly.level` is dependent on total water percentage (`pct_water_tot (%)`)
-**TS**: Kolmogorov-Smirnov statistic, since KDE of both categroies is very similar mean/median would'nt suffice. 
-**Result**: Failed to reject H0 (**pval = 0.8247** , alpha = 0.05)
+- **H0**: missingness in `anomaly.level` is independent of total water percentage (`pct_water_tot (%)`)
+- **H1**: missingness in `anomaly.level` is dependent on total water percentage (`pct_water_tot (%)`)
+- **TS**: Kolmogorov-Smirnov statistic, since KDE of both categroies is very similar mean/median would'nt suffice. 
+- **Result**: Failed to reject H0 (**pval = 0.8247** , alpha = 0.05)
 Missingness appears to be random with respect to water percentage.
 
 <iframe
-  src="assets/hyp_pct_water_tot (%).html"hyp_pct_water_tot (%).html
+  src="assets/hyp_pct_water_tot (%).html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
 
 **Missingness Hypothesis 2**: 
-**H0**: missingness in `anomaly.level` is independent of commercial electricity sales (`com.sales (megawatt-hour)`)
-**H1**: missingness in `anomaly.level` is dependent on commercial electricity sales (`com.sales (megawatt-hour)`)
-**TS**: Kolmogorov-Smirnov statistic, since KDE of both categroies is very similar mean/median would'nt suffice. 
-**Result**: Reject H0  (**pval = 0.0** , alpha = 0.05)
+- **H0**: missingness in `anomaly.level` is independent of commercial electricity sales (`com.sales (megawatt-hour)`)
+- **H1**: missingness in `anomaly.level` is dependent on commercial electricity sales (`com.sales (megawatt-hour)`)
+- **TS**: Kolmogorov-Smirnov statistic, since KDE of both categroies is very similar mean/median would'nt suffice. 
+- **Result**: Reject H0  (**pval = 0.0** , alpha = 0.05)
 Missingness does not appears to be random with respect to utility contribution, which is in line with our general expectations.
 
 <iframe

@@ -102,7 +102,7 @@ We test the following two hypothesis to for assessment of missingness in our dat
 - **H1**: missingness in `anomaly.level` is dependent on total water percentage (`pct_water_tot (%)`)
 - **TS**: Kolmogorov-Smirnov statistic, since KDE of both categroies is very similar mean/median would'nt suffice. 
 - **Result**: Failed to reject H0 (**pval = 0.8247** , alpha = 0.05)
-Missingness appears to be random with respect to water percentage.
+Missingness appears to be random with respect to water percentage. Our general expectation says that it should be dependent on climate variable like anomally.level, but the analysis says the otherwise signaling a weaker effect of water percentage.
 
 <iframe
   src="assets/hyp_pct_water_tot (%).html"
@@ -116,7 +116,7 @@ Missingness appears to be random with respect to water percentage.
 - **H1**: missingness in `anomaly.level` is dependent on commercial electricity sales (`com.sales (megawatt-hour)`)
 - **TS**: Kolmogorov-Smirnov statistic, since KDE of both categroies is very similar mean/median would'nt suffice. 
 - **Result**: Reject H0  (**pval = 0.0** , alpha = 0.05)
-Missingness does not appears to be random with respect to utility contribution, which is in line with our general expectations.
+Missingness appears to be random with respect to utility contribution, which is opposite to our general expectations, since commercial electricity sales would not influence climate anomally level. This appears to be more of a correlational result instead of causal outcome. 
 
 <iframe
   src="assets/hyp_com.sales (megawatt-hour).html"
@@ -125,15 +125,19 @@ Missingness does not appears to be random with respect to utility contribution, 
   frameborder="0"
 ></iframe>
 
-
-
 ## Hypothesis Testing
-<iframe
+<!-- <iframe
   src="assets/kde_is_normal_climate_True_False_dur_hours.html"
   width="800"
   height="600"
   frameborder="0"
-></iframe>
+></iframe> -->
+We will perform Permutation Testing to investigate the following: 
+- **H0**: outage duration is independent of climate category (using the encoding True if `climate.category` is normal)
+- **H1**: outage duration is dependent on climate category.
+- **TS**: Kolmogorov-Smirnov statistic, since KDE of both categroies is very similar mean/median would'nt suffice. 
+- **Result**: Failed to reject H0 (**pval = 0.0557** , alpha = 0.05)
+Hence we have no statistical evidence that climate category influences outage duration (suprising result, but acceptable since power outages depend on weather more than climate). This result must not be taken very seriously, because it is very close to alpha, if we had more information (less nans) we may yeild opposite result. 
 
 ## Framing a Prediction Problem
 

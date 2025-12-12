@@ -231,7 +231,7 @@ Params = {
 }
 ```
 
-With resulting **training MAE of 13.29 and test MAE of 36.41**. This demonstrates a clear improvement over the Baseline Linear Regression model which gave training MAE of **37.5** and a test MAE of **46.04**. This is reduction of more than **20% in test error**, therefore Random Forest was better able to capture the nonlinear relationship between our features and target. This also hints towards complex relationship present in the data. The drop in test error shows improved generalization and confidence that Final Model makes accurate predictions on data it hasn't seen compated to simple linear baseline. 
+With resulting **training MAE of 13.29 and test MAE of 36.41**. This demonstrates a clear improvement over the Baseline Linear Regression model which gave training MAE of **37.50** and a test MAE of **46.04**. This is reduction of more than **21% in test error**, therefore Random Forest was better able to capture the nonlinear relationship between our features and target. This also hints towards complex relationship present in the data. The drop in test error shows improved generalization and confidence that Final Model makes accurate predictions on data it hasn't seen compated to simple linear baseline. 
 
 ## Fairness Analysis
 

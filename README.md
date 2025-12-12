@@ -40,7 +40,9 @@ To prepare the data for analysis several cleaning steps were taken to clean and 
 
 `hurricane.names` is not useful information for our analysis hence we drop that columns. Since other columns like `cause.category` and `cause.category.detail` tell us why outage happened, dropping `hurricane.names` won't affect our model performance. `obs` was just an index columns hence we dropped it as well. `variable (units)` was dropped since we merged this information with columns headers. `postal.codes` was just US state names written in abbreviation, so we drop it.  
 
-<img src= "assets/imputation.png" width = "300">
+<div style="text-align:center;">
+    <img src="assets/imputation.png" width="300">
+</div>
 
 Missing values in the dataset were imputated using the preprocessing pipeline shown above. Numerical features like (`anomaly.level (numeric)`,`demand.loss.mw (megawatt)`,`customers.affected`) were passed through `sklearn.SimpleImputer` that replaced `NaNs` with median for each columns. We particularly replaced with median, because while doing Exploratory Data Analysis majority columns showed skewed towards right behavior, therefore median imputation became a better choice than mean imputation as median are less sensitive to outliers than mean.Later, the numerical varaibles are passed through `StandardScaler`data into z-score. This is an important step as this will ensure that higher values of one feature would not dominate the ones with numerical lower value, ensuring a consistent analysis.  Similarly categorical features were passed through `sklearn.SimpleImputer` that replaced `NaNs` with the most frequent category. Later OneHotEncoding was performed on categorical variables, essentially converting these categories into numbers. Note: Alternative imputation methods, including probabilistic and random sampling approaches, were explored. However, these techniques tended to inject noise and reduce predictive stability, so they were not used in the final preprocessing pipeline.
 

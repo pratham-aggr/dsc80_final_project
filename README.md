@@ -114,7 +114,7 @@ We test the following two hypothesis to for assessment of missingness in our dat
 Missingness appears to be random with respect to water percentage. Our general expectation says that it should be dependent on climate variable like anomally.level, but the analysis says the otherwise signaling a weaker effect of water percentage.
 
 <iframe
-  src="assets/hyp_pct_water_tot (%).html"
+  src="assets/hyp_pct_water_tot (%).png"
   width="800"
   height="600"
   frameborder="0"
@@ -161,7 +161,7 @@ After running the preprocessing pipeline and training the model, we obtain an **
 ## Final Model
 We chose **RandomForestRegressor** for this problems, intital experiments showed that model overfitted heavily, producing low train error however maintaing high test error. To reduce overfitting we simplify our model by dropping high correltion features. We plot the correlational matrix before and after removing features having absolute correlation greater than 0.9. doing this we get the following correltional maps before and after results. 
 
-<div style="display:flex; gap:20px;"> <iframe src="assets/corr_before.html" width="450" height="450" frameborder="0" ></iframe> <iframe src="assets/corr_after.html" width="450" height="450" frameborder="0" ></iframe> </div>
+<div style="display:flex; gap:20px;"> <iframe src="assets/corr_before.html" ></iframe> <iframe src="assets/corr_after.html"></iframe> </div>
 
 Looking at the both the figures, we see that multicollinearity decreased after removal. Note: the dark digonal represents self-correlation (always 1) as expected.
 

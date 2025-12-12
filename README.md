@@ -155,9 +155,18 @@ The baseline model we used is multiple **linear regression** to predict the seve
 
 As in data cleaning section we reiterate the following, Numerical features like (`anomaly.level (numeric)`,`demand.loss.mw (megawatt)`,`customers.affected`) were passed through `sklearn.SimpleImputer` that replaced `NaNs` with median for each columns and then it was passed through `StandardScaler` to convert them into z-scores.  This is an important step as this will ensure that higher values of one feature would not dominate the ones with numerical lower value, ensuring a consistent analysis. Similarly categorical features were passed through `sklearn.SimpleImputer` that replaced `NaNs` with the most frequent category. Later **OneHotEnoding** was performed on categorical variables. Baseline's objective would be understand the correlation between variables. 
 
-After running the preprocessing pipeline and training the model, we obtain an **MAE of 37.5 on the training set** and **46.0 on the test set**. While these results are not ideal, the model still performs **better than a naïve mean baseline**, which produces **MAE = 47.5 (train)** and **MAE = 53.85 (test)**. Although the model improves upon the baseline, its overall performance remains weaker than desired. This suggests that additional feature engineering, hyperparameter tuning, or exploring alternative model architectures may be needed to achieve stronger predictive accuracy.
+After running the preprocessing pipeline and training the model, we obtain an **MAE of 37.50 on the training set** and **46.04 on the test set**. While these results are not ideal, the model still performs **better than a naïve mean baseline**, which produces **MAE = 47.5 (train)** and **MAE = 53.85 (test)**. Although the model improves upon the baseline, its overall performance remains weaker than desired. This suggests that additional feature engineering, hyperparameter tuning, or exploring alternative model architectures may be needed to achieve stronger predictive accuracy.
 
 ## Final Model
+### Feature Engineering
+We applied `log1p()` to variables such as number of customers affected, demand loss, population and population densities. These variables are massivley large and very sparse, since outage duration typically grows in diminshing returns fashion with some feature, rather than linearly. Log tranform are expected to reduce the skewness of the data, in other words would decrease the variance. This would tune features to mimic how outages scale in real world. 
+
+The original columns were replaced with log tranformed ones.
+Furthermore to bring meaning to the categorical variables for our model, we adopt a strategic middle ground technique between OrdinalEncoding and OneHotEncoding. `cause_avg`, `state_avg`, `clim_avg` were added, these were created by having group them and taking the median of `dur_hours`. 
+
+Furthermore, we added interaction features such as `anomally_x_loss`, `urban_x_customers`, `cause_x_anomally` to account for compouding effects. Outage duration is not solely dependent upon single, instead it is impacted due to various factors. For example accounting for high demeand loss during an unfortunate weather event or a large customer outage occuring in a highly urbanized ares. These interactions give model much better understanding of multiplicative nature of outage severity, seen in real life.
+
+### RandomForestRegressor
 We chose **RandomForestRegressor** for this problems, intital experiments showed that model overfitted heavily, producing low train error however maintaing high test error. To reduce overfitting we simplify our model by dropping high correltion features. We plot the correlational matrix before and after removing features having absolute correlation greater than 0.9. doing this we get the following correltional maps before and after results. 
 
 <div style="display:flex; flex-direction:column; align-items:center; gap:30px; margin-top:20px;">
@@ -175,9 +184,6 @@ We chose **RandomForestRegressor** for this problems, intital experiments showed
   ></iframe>
 
 </div>
-
-
-
 
 Looking at the both the figures, we see that multicollinearity decreased after removal. Note: the dark digonal represents self-correlation (always 1) as expected.
 
@@ -225,6 +231,7 @@ Params = {
 }
 ```
 
-With resulting training error of **18.36** and test error of **37.79**. 
+With resulting **training MAE of 13.29 and test MAE of 36.41**. This demonstrates a clear improvement over the Baseline Linear Regression model which gave training MAE of **37.5** and a test MAE of **46.04**. This is reduction of more than **20% in test error**, therefore Random Forest was better able to capture the nonlinear relationship between our features and target. This also hints towards complex relationship present in the data. The drop in test error shows improved generalization and confidence that Final Model makes accurate predictions on data it hasn't seen compated to simple linear baseline. 
 
 ## Fairness Analysis
+

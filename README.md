@@ -46,7 +46,7 @@ To prepare the data for analysis several cleaning steps were taken to clean and 
 
 Missing values in the dataset were imputated using the preprocessing pipeline shown above. Numerical features like (`anomaly.level (numeric)`,`demand.loss.mw (megawatt)`,`customers.affected`) were passed through `sklearn.SimpleImputer` that replaced `NaNs` with median for each columns. We particularly replaced with median, because while doing Exploratory Data Analysis majority columns showed skewed towards right behavior, therefore median imputation became a better choice than mean imputation as median are less sensitive to outliers than mean.Later, the numerical varaibles are passed through `StandardScaler`data into z-score. This is an important step as this will ensure that higher values of one feature would not dominate the ones with numerical lower value, ensuring a consistent analysis.  Similarly categorical features were passed through `sklearn.SimpleImputer` that replaced `NaNs` with the most frequent category. Later OneHotEncoding was performed on categorical variables, essentially converting these categories into numbers. Note: Alternative imputation methods, including probabilistic and random sampling approaches, were explored. However, these techniques tended to inject noise and reduce predictive stability, so they were not used in the final preprocessing pipeline.
 
-first five rows of our cleaned dataset showing the important columns as follows:
+first five rows and columns of our cleaned dataset as follows:
 
 |    | u.s._state   | nerc.region   | climate.region     |   anomaly.level (numeric) | climate.category   | cause.category     |
 |---:|:-------------|:--------------|:-------------------|--------------------------:|:-------------------|:-------------------|
@@ -234,4 +234,17 @@ Params = {
 With resulting **training MAE of 13.29 and test MAE of 36.41**. This demonstrates a clear improvement over the Baseline Linear Regression model which gave training MAE of **37.50** and a test MAE of **46.04**. This is reduction of more than **21% in test error**, therefore Random Forest was better able to capture the nonlinear relationship between our features and target. This also hints towards complex relationship present in the data. The drop in test error shows improved generalization and confidence that Final Model makes accurate predictions on data it hasn't seen compated to simple linear baseline. 
 
 ## Fairness Analysis
+We wonder whether our model is unfair to certrain populations, hence we perform Fairness Analysis. To do this we compared the model's performance across two demographic groups based on the percentage of population living in urban areas. Hence we define:
 
+- **Group X (Urban)**: outages where `popct_urban (%)` is greater than the threshold
+- **Group Y (Rural)**: outages where `popct_urban (%)` is less than or equal to threshold
+
+Here threshold was computed by taking the mean of `popct_urban (%)`, mean is appropriate since `popct_urban (%)` is approximately normal. To remain consitent with benchmarks, noting that it is a regression task our evealution metric would again be Mean Absolute Erorr (MAE).
+
+Now we perform the following **Permutation Testing**
+- **H0**: Model is fair, the MAE for Urban and Rural outages comes from the same distribution, and any difference is due a random chance.
+- **H1**: Model is unfair, the MAE for Urban outages is higher than the MAE of Rural outages.
+- **TS**: Difference between the MAE of urban group and MAE of rural group 
+- **Result**: Failed to Reject H0 (**pval =  0.8074** , **alpha (significance level) = 0.05**)
+
+Since the pvalue is greater than our significance level we find no statistical evidence that model perfoms differently for Urban and Rural outages. Under this fairness definition model seems to be fair. 

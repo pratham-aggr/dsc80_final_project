@@ -245,6 +245,6 @@ Now we perform the following **Permutation Testing**
 - **H0**: Model is fair, the MAE for Urban and Rural outages comes from the same distribution, and any difference is due a random chance.
 - **H1**: Model is unfair, the MAE for Urban outages is higher than the MAE of Rural outages.
 - **TS**: Difference between the MAE of urban group and MAE of rural group 
-- **Result**: Failed to Reject H0 (**pval =  0.797** , **alpha (significance level) = 0.05**)
+- **Result**: Failed to Reject H0 (**pval =  0.806** , **alpha (significance level) = 0.05**)
 
 Since the pvalue is greater than our significance level we find no statistical evidence that model perfoms differently for Urban and Rural outages. Under this fairness definition model seems to be fair. 

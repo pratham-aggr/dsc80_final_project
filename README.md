@@ -48,13 +48,13 @@ Missing values in the dataset were imputated using the preprocessing pipeline sh
 
 first five rows of our cleaned dataset showing the important columns as follows:
 
-|    |   dur_hours |   customers.affected |   demand.loss.mw (megawatt) |   population |   poppct_urban (%) |   res.price (cents / kilowatt-hour) |   pc.realgsp.state (usd) |
-|---:|------------:|---------------------:|----------------------------:|-------------:|-------------------:|------------------------------------:|-------------------------:|
-|  0 |  51         |                70000 |                         nan |  5.34812e+06 |              73.27 |                               11.6  |                    51268 |
-|  1 |   0.0166667 |                  nan |                         nan |  5.45712e+06 |              73.27 |                               12.12 |                    53499 |
-|  2 |  50         |                70000 |                         nan |  5.3109e+06  |              73.27 |                               10.87 |                    50447 |
-|  3 |  42.5       |                68200 |                         nan |  5.38044e+06 |              73.27 |                               11.79 |                    51598 |
-|  4 |  29         |               250000 |                         250 |  5.48959e+06 |              73.27 |                               13.07 |                    54431 |
+|    | u.s._state   | nerc.region   | climate.region     |   anomaly.level (numeric) | climate.category   | cause.category     |
+|---:|:-------------|:--------------|:-------------------|--------------------------:|:-------------------|:-------------------|
+|  0 | Minnesota    | MRO           | East North Central |                      -0.3 | normal             | severe weather     |
+|  1 | Minnesota    | MRO           | East North Central |                      -0.1 | normal             | intentional attack |
+|  2 | Minnesota    | MRO           | East North Central |                      -1.5 | cold               | severe weather     |
+|  3 | Minnesota    | MRO           | East North Central |                      -0.1 | normal             | severe weather     |
+|  4 | Minnesota    | MRO           | East North Central |                       1.2 | warm               | severe weather     |
 
 ### Univariate Analysis 
 <!-- <iframe
